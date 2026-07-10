@@ -20,12 +20,12 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Messaging
 
-* [ ] Create typed message definitions
-* [ ] Create shared message constants / enums
-* [ ] Create messaging service
-* [ ] Implement runtime messaging
-* [ ] Implement Background message router
-* [ ] Remove future dependency on storage messaging
+* [x] Create typed message definitions
+* [x] Create shared message constants / enums
+* [x] Create messaging service
+* [x] Implement runtime messaging
+* [x] Implement Background message router
+* [ ] Remove future dependency on storage messaging (deferred — existing toggle still uses storage)
 
 ---
 
@@ -142,7 +142,7 @@ Build the foundation of the recording extension without implementing the final U
 * [x] Existing Side Panel still works
 * [x] Background Service Worker is active
 * [ ] Offscreen Document can be created
-* [ ] Typed messaging works
+* [x] Typed messaging works
 * [ ] RecordingManager can be instantiated
 * [ ] RecordingManager state transitions work
 * [ ] Documentation completed

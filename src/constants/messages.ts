@@ -1,0 +1,12 @@
+export const MessageType = {
+  PING: 'PING',
+  PONG: 'PONG',
+  GET_RECORDING_STATUS: 'GET_RECORDING_STATUS',
+  START_RECORDING: 'START_RECORDING',
+  STOP_RECORDING: 'STOP_RECORDING',
+  PAUSE_RECORDING: 'PAUSE_RECORDING',
+  RESUME_RECORDING: 'RESUME_RECORDING',
+  OPEN_SIDE_PANEL: 'OPEN_SIDE_PANEL',
+} as const
+
+export type MessageTypeValue = (typeof MessageType)[keyof typeof MessageType]

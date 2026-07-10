@@ -1,3 +1,6 @@
+import { MessageType } from '@/constants/messages'
+import { addMessageListener } from '@/services/messaging.service'
+
 function initialize(): void {
   console.log('[Background] Extension initialized')
 }
@@ -12,9 +15,20 @@ chrome.runtime.onStartup.addListener(() => {
   initialize()
 })
 
-chrome.runtime.onMessage.addListener((_message, _sender, sendResponse) => {
-  sendResponse({ received: true })
-  return true
+addMessageListener((message, _sender, sendResponse) => {
+  switch (message.type) {
+    case MessageType.PING:
+      sendResponse({ type: MessageType.PONG, timestamp: Date.now() })
+      return true
+    default:
+      sendResponse({
+        type: 'ERROR',
+        code: 'UNKNOWN_MESSAGE_TYPE',
+        message: `Unknown message type: "${message.type}"`,
+        handler: 'background',
+      })
+      return true
+  }
 })
 
 export {}
