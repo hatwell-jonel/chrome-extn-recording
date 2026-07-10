@@ -31,15 +31,15 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Recording Manager
 
-* [ ] Create `RecordingManager` singleton
-* [ ] Implement recording state machine
-* [ ] Implement `start()`
-* [ ] Implement `stop()`
-* [ ] Implement `pause()`
-* [ ] Implement `resume()`
-* [ ] Implement `cleanup()`
-* [ ] Implement `getState()`
-* [ ] Prevent multiple simultaneous recordings
+* [x] Create `RecordingManager` singleton
+* [x] Implement recording state machine
+* [x] Implement `start()`
+* [x] Implement `stop()`
+* [x] Implement `pause()`
+* [x] Implement `resume()`
+* [x] Implement `cleanup()`
+* [x] Implement `getState()`
+* [x] Prevent multiple simultaneous recordings
 
 ---
 
@@ -104,11 +104,11 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Errors
 
-* [ ] Create `PermissionDeniedError`
-* [ ] Create `RecordingAlreadyRunningError`
-* [ ] Create `RecordingNotRunningError`
-* [ ] Create `CaptureFailedError`
-* [ ] Create `DownloadFailedError`
+* [x] Create `PermissionDeniedError`
+* [x] Create `RecordingAlreadyRunningError`
+* [x] Create `RecordingNotRunningError`
+* [x] Create `CaptureFailedError`
+* [x] Create `DownloadFailedError`
 
 ---
 
@@ -143,8 +143,8 @@ Build the foundation of the recording extension without implementing the final U
 * [x] Background Service Worker is active
 * [ ] Offscreen Document can be created
 * [x] Typed messaging works
-* [ ] RecordingManager can be instantiated
-* [ ] RecordingManager state transitions work
+* [x] RecordingManager can be instantiated
+* [x] RecordingManager state transitions work
 * [ ] Documentation completed
 
 ---
@@ -167,3 +167,10 @@ Examples:
 **Problem:** The shared `tailwind.css` contained Vite+React starter template styles (`body { display: flex; place-items: center }`, `#root { max-width: 1280px }`, button/link overrides) that were injected into every page via `content_scripts.css`, breaking host page layouts.
 
 **Fix:** Removed the template styles from the shared CSS. The file now only imports Tailwind, shadcn theme variables, and the Inter font. Extension-specific UI styling will be handled by shadcn components and Tailwind utility classes in future phases.
+
+### RecordingManager Singleton
+
+- **Singleton pattern** ensures only one recording instance exists, enforced by a private constructor and `getInstance()` static method.
+- **State machine** uses a simple `RecordingStatus` union (`'idle'` | `'recording'` | `'paused'`) with explicit transition validation in each method.
+- **Custom errors** extend `Error` with a `code` property for structured handling. Errors are thrown immediately on invalid transitions (fail-fast).
+- **No external dependencies** — the manager is a pure TypeScript class with no Chrome API or framework imports, making it testable and independent.
