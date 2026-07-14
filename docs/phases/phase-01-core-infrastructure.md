@@ -54,14 +54,14 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Media Service
 
-* [ ] Create Media Service
-* [ ] Abstract browser recording APIs
-* [ ] Create generic capture interface
-* [ ] Prepare support for:
+* [x] Create Media Service
+* [x] Abstract browser recording APIs
+* [x] Create generic capture interface
+* [x] Prepare support for:
 
-  * [ ] Screen capture
-  * [ ] Window capture
-  * [ ] Tab capture
+  * [x] Screen capture
+  * [x] Window capture
+  * [x] Tab capture
 
 ---
 
@@ -116,7 +116,7 @@ Build the foundation of the recording extension without implementing the final U
 
 * [ ] Create shared message types
 * [ ] Create shared recording types
-* [ ] Create shared media types
+* [x] Create shared media types
 * [ ] Create shared constants
 * [ ] Remove duplicated type definitions
 
