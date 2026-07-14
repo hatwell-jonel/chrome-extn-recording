@@ -1,9 +1,33 @@
 import { MessageType } from '@/constants/messages'
+import { MediaAction } from '@/types/media'
+import type { MediaActionValue } from '@/types/media'
 import type {
   ExtensionMessage,
   ExtensionResponse,
   OffscreenMediaResultMessage,
 } from '@/types/messages'
+
+type MediaHandler = (
+  payload: unknown,
+) => Promise<{ success: boolean; data?: unknown; error?: string }>
+
+const mediaHandlers: Partial<Record<MediaActionValue, MediaHandler>> = {
+  [MediaAction.START_CAPTURE]: async (_payload) => {
+    return { success: false, error: 'Not implemented' }
+  },
+  [MediaAction.STOP_CAPTURE]: async (_payload) => {
+    return { success: false, error: 'Not implemented' }
+  },
+  [MediaAction.PAUSE_CAPTURE]: async (_payload) => {
+    return { success: false, error: 'Not implemented' }
+  },
+  [MediaAction.RESUME_CAPTURE]: async (_payload) => {
+    return { success: false, error: 'Not implemented' }
+  },
+  [MediaAction.GET_STATUS]: async (_payload) => {
+    return { success: false, error: 'Not implemented' }
+  },
+}
 
 function handleMessage(
   message: ExtensionMessage,
@@ -28,13 +52,39 @@ function handleMediaAction(
   message: Extract<ExtensionMessage, { type: typeof MessageType.OFFSCREEN_MEDIA_ACTION }>,
   sendResponse: (response: ExtensionResponse) => void,
 ): void {
-  const result: OffscreenMediaResultMessage = {
-    type: MessageType.OFFSCREEN_MEDIA_RESULT,
-    action: message.action,
-    success: false,
-    error: 'Not implemented',
+  const handler = mediaHandlers[message.action]
+
+  if (!handler) {
+    const result: OffscreenMediaResultMessage = {
+      type: MessageType.OFFSCREEN_MEDIA_RESULT,
+      action: message.action,
+      success: false,
+      error: `Unknown media action: "${message.action}"`,
+    }
+    sendResponse(result)
+    return
   }
-  sendResponse(result)
+
+  handler(message.payload)
+    .then(({ success, data, error }) => {
+      const result: OffscreenMediaResultMessage = {
+        type: MessageType.OFFSCREEN_MEDIA_RESULT,
+        action: message.action,
+        success,
+        data,
+        error,
+      }
+      sendResponse(result)
+    })
+    .catch((err: Error) => {
+      const result: OffscreenMediaResultMessage = {
+        type: MessageType.OFFSCREEN_MEDIA_RESULT,
+        action: message.action,
+        success: false,
+        error: err.message,
+      }
+      sendResponse(result)
+    })
 }
 
 chrome.runtime.onMessage.addListener(handleMessage)

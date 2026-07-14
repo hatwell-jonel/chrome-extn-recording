@@ -52,11 +52,13 @@ describe('Offscreen Document', () => {
       sendResponse,
     )
 
-    expect(sendResponse).toHaveBeenCalledWith({
-      type: MessageType.OFFSCREEN_MEDIA_RESULT,
-      action: 'startCapture',
-      success: false,
-      error: 'Not implemented',
+    await vi.waitFor(() => {
+      expect(sendResponse).toHaveBeenCalledWith({
+        type: MessageType.OFFSCREEN_MEDIA_RESULT,
+        action: 'startCapture',
+        success: false,
+        error: 'Not implemented',
+      })
     })
   })
 

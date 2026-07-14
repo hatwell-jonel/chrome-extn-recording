@@ -1,4 +1,5 @@
 import { MessageType } from '@/constants/messages'
+import type { MediaActionValue } from '@/types/media'
 import type {
   ExtensionResponse,
   OffscreenMediaActionMessage,
@@ -44,7 +45,7 @@ export class OffscreenManager {
   }
 
   async sendMediaAction(
-    action: string,
+    action: MediaActionValue,
     payload?: unknown,
   ): Promise<OffscreenMediaResultMessage> {
     const message: OffscreenMediaActionMessage = {
