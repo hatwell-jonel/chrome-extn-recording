@@ -6,3 +6,19 @@ export interface RecordingState {
   pausedAt: number | null
   totalPausedDuration: number
 }
+
+export interface RecordingMetadata {
+  tabId?: number
+  tabTitle?: string
+  tabUrl?: string
+  mimeType?: string
+  fileName?: string
+}
+
+export interface RecordingPermissions {
+  camera: boolean | null
+  microphone: boolean | null
+  display: boolean | null
+  storage: boolean | null
+  downloads: boolean | null
+}

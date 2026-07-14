@@ -67,13 +67,13 @@ Build the foundation of the recording extension without implementing the final U
 
 ## State Management
 
-* [ ] Create Zustand recording store
-* [ ] Recording status
-* [ ] Recording duration
-* [ ] Recording metadata
-* [ ] Error state
-* [ ] Capture source
-* [ ] Recording permissions
+* [x] Create Zustand recording store
+* [x] Recording status
+* [x] Recording duration
+* [x] Recording metadata
+* [x] Error state
+* [x] Capture source
+* [x] Recording permissions
 
 ---
 
