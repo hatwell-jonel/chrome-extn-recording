@@ -18,6 +18,7 @@ export default defineManifest({
     service_worker: 'src/background/main.ts',
   },
   permissions: [
+    'offscreen',
     'sidePanel',
     'contentSettings',
     'storage',

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import type { RecordingState, RecordingStatus } from './recording'
+import type { RecordingState, RecordingStatus } from '../recording'
 
 describe('RecordingStatus', () => {
   it('should accept valid status values', () => {

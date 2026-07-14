@@ -5,7 +5,7 @@ export function createChromeMock() {
 
   const mock = {
     runtime: {
-      sendMessage: vi.fn(),
+      sendMessage: vi.fn<(...args: unknown[]) => Promise<unknown>>(),
       onMessage: {
         addListener: vi.fn((cb: (...args: unknown[]) => void) => {
           if (!listeners['onMessage']) listeners['onMessage'] = []
@@ -60,6 +60,17 @@ export function createChromeMock() {
       },
       setBadgeText: vi.fn(),
       setBadgeBackgroundColor: vi.fn(),
+    },
+    offscreen: {
+      createDocument: vi.fn<(...args: unknown[]) => Promise<void>>().mockResolvedValue(undefined),
+      closeDocument: vi.fn<(...args: unknown[]) => Promise<void>>().mockResolvedValue(undefined),
+      Reason: {
+        USER_MEDIA: 'USER_MEDIA',
+        BLOBS: 'BLOBS',
+        DOM_SCRAPING: 'DOM_SCRAPING',
+        CLIPBOARD: 'CLIPBOARD',
+        TESTING: 'TESTING',
+      },
     },
   }
 

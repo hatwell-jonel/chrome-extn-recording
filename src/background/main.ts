@@ -1,5 +1,8 @@
 import { MessageType } from '@/constants/messages'
 import { addMessageListener } from '@/services/messaging.service'
+import { OffscreenManager } from '@/services/offscreen-manager.service'
+
+const offscreenManager = OffscreenManager.getInstance()
 
 function initialize(): void {
   console.log('[Background] Extension initialized')
@@ -20,6 +23,32 @@ addMessageListener((message, _sender, sendResponse) => {
     case MessageType.PING:
       sendResponse({ type: MessageType.PONG, timestamp: Date.now() })
       return true
+
+    case MessageType.OFFSCREEN_CREATE:
+      offscreenManager.create()
+        .then(() => sendResponse({ type: MessageType.OFFSCREEN_READY }))
+        .catch((err: Error) => sendResponse({
+          type: 'ERROR',
+          code: 'OFFSCREEN_CREATE_FAILED',
+          message: err.message,
+          handler: 'background',
+        }))
+      return true
+
+    case MessageType.OFFSCREEN_CLOSE:
+      offscreenManager.close()
+        .then(() => sendResponse({ type: 'OFFSCREEN_CLOSED' }))
+        .catch((err: Error) => sendResponse({
+          type: 'ERROR',
+          code: 'OFFSCREEN_CLOSE_FAILED',
+          message: err.message,
+          handler: 'background',
+        }))
+      return true
+
+    case MessageType.OFFSCREEN_READY:
+      return
+
     default:
       sendResponse({
         type: 'ERROR',
@@ -31,4 +60,4 @@ addMessageListener((message, _sender, sendResponse) => {
   }
 })
 
-export {}
+export { offscreenManager }

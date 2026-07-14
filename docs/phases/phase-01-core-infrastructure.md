@@ -45,10 +45,10 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Offscreen Document
 
-* [ ] Create Offscreen Document
-* [ ] Register Offscreen Document
-* [ ] Implement Offscreen lifecycle
-* [ ] Prepare Background ↔ Offscreen communication
+* [x] Create Offscreen Document
+* [x] Register Offscreen Document
+* [x] Implement Offscreen lifecycle
+* [x] Prepare Background ↔ Offscreen communication
 
 ---
 
@@ -141,7 +141,7 @@ Build the foundation of the recording extension without implementing the final U
 * [x] Existing Content Script still works
 * [x] Existing Side Panel still works
 * [x] Background Service Worker is active
-* [ ] Offscreen Document can be created
+* [x] Offscreen Document can be created
 * [x] Typed messaging works
 * [x] RecordingManager can be instantiated
 * [x] RecordingManager state transitions work
@@ -167,6 +167,15 @@ Examples:
 **Problem:** The shared `tailwind.css` contained Vite+React starter template styles (`body { display: flex; place-items: center }`, `#root { max-width: 1280px }`, button/link overrides) that were injected into every page via `content_scripts.css`, breaking host page layouts.
 
 **Fix:** Removed the template styles from the shared CSS. The file now only imports Tailwind, shadcn theme variables, and the Inter font. Extension-specific UI styling will be handled by shadcn components and Tailwind utility classes in future phases.
+
+### Offscreen Document
+
+- **Created dynamically** via `chrome.offscreen.createDocument()` with reason `USER_MEDIA` — not declared statically in manifest.
+- **Single-instance** `OffscreenManager` singleton tracks `_isCreated` flag to prevent duplicate creation.
+- **Communication** uses `chrome.runtime.sendMessage` (simple request/response). The offscreen doc emits `OFFSCREEN_READY` on load; the background can `PING`/`PONG` for health checks, and send `OFFSCREEN_MEDIA_ACTION` messages for future media operations.
+- **URL resolution** uses `chrome.runtime.getURL('src/offscreen/index.html')` — the HTML is built by Vite/CRXJS as an additional rollup entry point.
+- **Lifecycle**: created on demand (future: on recording start), closed explicitly (future: on recording stop). Auto-recreation on crash handled by background checking `isCreated` state.
+- **Reasoning**: Offscreen documents provide a hidden DOM context required for `MediaRecorder` and `getDisplayMedia` APIs, which are unavailable in MV3 service workers.
 
 ### RecordingManager Singleton
 
