@@ -17,6 +17,10 @@ export default defineManifest({
   background: {
     service_worker: 'src/background/main.ts',
   },
+  optional_permissions: [
+    'desktopCapture',
+    'tabCapture',
+  ],
   permissions: [
     'offscreen',
     'sidePanel',

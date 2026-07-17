@@ -1,17 +1,20 @@
 import { MessageType } from '@/constants/messages'
 import { addMessageListener } from '@/services/messaging.service'
 import { OffscreenManager } from '@/services/offscreen-manager.service'
+import { PermissionService } from '@/services/permission.service'
 import { RecordingManager } from '@/services/recording-manager.service'
 import { MediaService } from '@/services/media.service'
 import type { CaptureSource, CaptureOptions } from '@/types/media'
 import type { ExtensionResponse } from '@/types/messages'
 
 const offscreenManager = OffscreenManager.getInstance()
+const permissionService = PermissionService.getInstance()
 const recordingManager = RecordingManager.getInstance()
 const mediaService = MediaService.getInstance()
 
 function initialize(): void {
   console.log('[Background] Extension initialized')
+  permissionService.initialize().catch(console.warn)
 }
 
 chrome.runtime.onInstalled.addListener((details) => {

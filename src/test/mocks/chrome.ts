@@ -86,6 +86,34 @@ export function createChromeMock() {
         },
       ),
     },
+    permissions: {
+      contains: vi.fn(
+        (_permissions: { permissions: string[] }, callback: (result: boolean) => void) => {
+          callback(true)
+        },
+      ),
+      request: vi.fn(
+        (_permissions: { permissions: string[] }, callback: (granted: boolean) => void) => {
+          callback(true)
+        },
+      ),
+      getAll: vi.fn((callback: (permissions: { permissions: string[] }) => void) => {
+        callback({ permissions: [] })
+      }),
+      remove: vi.fn(
+        (_permissions: { permissions: string[] }, callback: (removed: boolean) => void) => {
+          callback(true)
+        },
+      ),
+      onAdded: {
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      },
+      onRemoved: {
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+      },
+    },
     offscreen: {
       createDocument: vi.fn<(...args: unknown[]) => Promise<void>>().mockResolvedValue(undefined),
       closeDocument: vi.fn<(...args: unknown[]) => Promise<void>>().mockResolvedValue(undefined),

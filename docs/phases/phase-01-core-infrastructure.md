@@ -95,10 +95,10 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Permissions
 
-* [ ] Create Permission Service
-* [ ] Handle storage permission
-* [ ] Handle downloads permission
-* [ ] Prepare recording permissions
+* [x] Create Permission Service
+* [x] Handle storage permission
+* [x] Handle downloads permission
+* [x] Prepare recording permissions
 
 ---
 
