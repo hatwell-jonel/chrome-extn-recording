@@ -1,5 +1,7 @@
 import { vi } from 'vitest'
 
+export type ChromeMock = ReturnType<typeof createChromeMock>
+
 export function createChromeMock() {
   const listeners: Record<string, Array<(...args: unknown[]) => void>> = {}
 

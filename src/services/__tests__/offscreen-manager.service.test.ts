@@ -1,8 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { OffscreenManager } from '../offscreen-manager.service'
-import { createChromeMock } from '@/test/mocks/chrome'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
+import { type ChromeMock } from '@/test/mocks/chrome'
 
 describe('OffscreenManager', () => {
   let manager: OffscreenManager

@@ -1,9 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { DownloadService } from '../download.service'
 import { DownloadFailedError } from '@/errors/recording.errors'
-import { createChromeMock } from '@/test/mocks/chrome'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
+import { type ChromeMock } from '@/test/mocks/chrome'
 
 function createTextBlob(text: string, mimeType = 'text/plain'): Blob {
   return new Blob([text], { type: mimeType })

@@ -1,11 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useRecordingStore } from '../recording.store'
 import { MessageType } from '@/constants/messages'
-import { createChromeMock } from '@/test/mocks/chrome'
+import { type ChromeMock } from '@/test/mocks/chrome'
 import type { RecordingStatusResponse, ExtensionResponse } from '@/types/messages'
 import type { RecordingState } from '@/types/recording'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
 
 const idleState: RecordingState = {
   status: 'idle',

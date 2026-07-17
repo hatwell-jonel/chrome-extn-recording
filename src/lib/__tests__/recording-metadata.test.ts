@@ -1,10 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { getAllRecordings, saveRecording, deleteRecording } from '../recording-metadata'
 import { StorageKey } from '@/constants/storage'
-import { createChromeMock } from '@/test/mocks/chrome'
+import { createChromeMock, type ChromeMock } from '@/test/mocks/chrome'
 import type { StoredRecording } from '@/types/storage'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
 
 const sampleRecording: StoredRecording = {
   id: 'rec-1',

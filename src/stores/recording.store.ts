@@ -3,7 +3,7 @@ import { sendMessage } from '@/services/messaging.service'
 import { MessageType } from '@/constants/messages'
 import type { RecordingState, RecordingStatus, RecordingMetadata, RecordingPermissions } from '@/types/recording'
 import type { CaptureSource, CaptureOptions } from '@/types/media'
-import type { ExtensionResponse, RecordingStatusResponse } from '@/types/messages'
+import type { ErrorResponse, ExtensionResponse, RecordingStatusResponse } from '@/types/messages'
 
 interface RecordingStore {
   status: RecordingStatus
@@ -56,7 +56,7 @@ function isStatusResponse(response: ExtensionResponse): response is RecordingSta
   return response.type === MessageType.GET_RECORDING_STATUS
 }
 
-function isErrorResponse(response: ExtensionResponse): response is ExtensionResponse & { type: 'ERROR'; code: string; message: string } {
+function isErrorResponse(response: ExtensionResponse): response is ErrorResponse {
   return response.type === 'ERROR'
 }
 

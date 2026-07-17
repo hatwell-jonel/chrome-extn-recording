@@ -90,3 +90,7 @@ function handleMediaAction(
 chrome.runtime.onMessage.addListener(handleMessage)
 
 chrome.runtime.sendMessage({ type: MessageType.OFFSCREEN_READY })
+
+window.addEventListener('beforeunload', () => {
+  chrome.runtime.sendMessage({ type: MessageType.OFFSCREEN_CLOSED })
+})

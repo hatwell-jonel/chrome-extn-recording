@@ -1,10 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { getPreferences, setPreferences } from '../user-preferences'
 import { StorageKey } from '@/constants/storage'
-import { createChromeMock } from '@/test/mocks/chrome'
+import { createChromeMock, type ChromeMock } from '@/test/mocks/chrome'
 import type { UserPreferences } from '@/types/storage'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
 
 const defaultPrefs: UserPreferences = {
   defaultSource: 'screen',

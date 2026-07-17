@@ -12,6 +12,7 @@ export const MessageType = {
   OFFSCREEN_READY: 'OFFSCREEN_READY',
   OFFSCREEN_MEDIA_ACTION: 'OFFSCREEN_MEDIA_ACTION',
   OFFSCREEN_MEDIA_RESULT: 'OFFSCREEN_MEDIA_RESULT',
+  OFFSCREEN_CLOSED: 'OFFSCREEN_CLOSED',
 } as const
 
 export type MessageTypeValue = (typeof MessageType)[keyof typeof MessageType]

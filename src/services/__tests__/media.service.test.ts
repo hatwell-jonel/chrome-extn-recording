@@ -4,9 +4,7 @@ import { OffscreenManager } from '../offscreen-manager.service'
 import { MediaAction } from '@/types/media'
 import type { CaptureSource } from '@/types/media'
 import type { OffscreenMediaResultMessage } from '@/types/messages'
-import { createChromeMock } from '@/test/mocks/chrome'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
+import { type ChromeMock } from '@/test/mocks/chrome'
 
 describe('MediaService', () => {
   let service: MediaService

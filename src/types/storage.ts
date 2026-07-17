@@ -15,3 +15,7 @@ export interface UserPreferences {
   countdownDuration: number
   autoDownload: boolean
 }
+
+export interface Settings {
+  showContentPopup: boolean
+}

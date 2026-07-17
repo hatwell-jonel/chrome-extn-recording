@@ -31,7 +31,7 @@ export interface OffscreenReadyMessage {
 }
 
 export interface OffscreenClosedMessage {
-  type: 'OFFSCREEN_CLOSED'
+  type: typeof MessageType.OFFSCREEN_CLOSED
 }
 
 export interface OffscreenMediaActionMessage {
@@ -84,6 +84,7 @@ export type ExtensionMessage =
   | OffscreenCreateMessage
   | OffscreenCloseMessage
   | OffscreenReadyMessage
+  | OffscreenClosedMessage
   | OffscreenMediaActionMessage
   | GetRecordingStatusMessage
   | StartRecordingMessage

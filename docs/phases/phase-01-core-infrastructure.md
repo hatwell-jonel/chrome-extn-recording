@@ -114,21 +114,21 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Types & Constants
 
-* [ ] Create shared message types
-* [ ] Create shared recording types
+* [x] Create shared message types
+* [x] Create shared recording types
 * [x] Create shared media types
-* [ ] Create shared constants
-* [ ] Remove duplicated type definitions
+* [x] Create shared constants
+* [x] Remove duplicated type definitions
 
 ---
 
 ## Documentation
 
-* [ ] Create `architecture.md`
-* [ ] Create `messaging.md`
-* [ ] Create `recording-flow.md`
-* [ ] Create `state-management.md`
-* [ ] Create `decisions.md`
+* [x] Create `architecture.md`
+* [x] Create `messaging.md`
+* [x] Create `recording-flow.md`
+* [x] Create `state-management.md`
+* [x] Create `decisions.md`
 
 ---
 
@@ -145,7 +145,7 @@ Build the foundation of the recording extension without implementing the final U
 * [x] Typed messaging works
 * [x] RecordingManager can be instantiated
 * [x] RecordingManager state transitions work
-* [ ] Documentation completed
+* [x] Documentation completed
 
 ---
 

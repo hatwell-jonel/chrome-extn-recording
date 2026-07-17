@@ -1,8 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { get, set, remove, onChanged } from '../storage'
-import { createChromeMock } from '@/test/mocks/chrome'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
+import { createChromeMock, type ChromeMock } from '@/test/mocks/chrome'
 
 describe('storage', () => {
   let mockChrome: ChromeMock

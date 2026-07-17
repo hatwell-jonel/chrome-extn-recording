@@ -58,6 +58,10 @@ addMessageListener((message, _sender, sendResponse) => {
     case MessageType.OFFSCREEN_READY:
       return
 
+    case MessageType.OFFSCREEN_CLOSED:
+      console.log('[Background] Offscreen document closed')
+      return
+
     case MessageType.GET_RECORDING_STATUS: {
       const state = recordingManager.getState()
       const response: ExtensionResponse = {

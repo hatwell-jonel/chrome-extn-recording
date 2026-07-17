@@ -1,9 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { PermissionService } from '../permission.service'
 import { PermissionDeniedError } from '@/errors/recording.errors'
-import { createChromeMock } from '@/test/mocks/chrome'
-
-type ChromeMock = ReturnType<typeof createChromeMock>
+import { type ChromeMock } from '@/test/mocks/chrome'
 
 describe('PermissionService', () => {
   let service: PermissionService
