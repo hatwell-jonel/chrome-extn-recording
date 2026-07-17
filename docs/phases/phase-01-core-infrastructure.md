@@ -87,9 +87,9 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Downloads
 
-* [x] Create Download Service
-* [x] Implement Blob download helper
-* [x] Implement filename generator
+* [ ] Create Download Service
+* [ ] Implement Blob download helper
+* [ ] Implement filename generator
 
 ---
 
