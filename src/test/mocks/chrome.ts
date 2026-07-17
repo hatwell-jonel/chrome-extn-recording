@@ -41,8 +41,22 @@ export function createChromeMock() {
         clear: vi.fn(),
       },
       onChanged: {
-        addListener: vi.fn(),
-        removeListener: vi.fn(),
+        addListener: vi.fn((cb: (...args: unknown[]) => void) => {
+          if (!listeners['storageOnChanged']) listeners['storageOnChanged'] = []
+          listeners['storageOnChanged'].push(cb)
+        }),
+        removeListener: vi.fn((cb: (...args: unknown[]) => void) => {
+          if (listeners['storageOnChanged']) {
+            listeners['storageOnChanged'] = listeners['storageOnChanged'].filter((l) => l !== cb)
+          }
+        }),
+        trigger: (changes: Record<string, { newValue?: unknown; oldValue?: unknown }>) => {
+          if (listeners['storageOnChanged']) {
+            for (const listener of listeners['storageOnChanged']) {
+              listener(changes)
+            }
+          }
+        },
       },
     },
     sidePanel: {

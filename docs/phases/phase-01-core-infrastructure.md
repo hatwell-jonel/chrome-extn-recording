@@ -79,9 +79,9 @@ Build the foundation of the recording extension without implementing the final U
 
 ## Storage
 
-* [ ] Create settings helper
-* [ ] Create recording metadata helper
-* [ ] Create user preferences helper
+* [x] Create settings helper
+* [x] Create recording metadata helper
+* [x] Create user preferences helper
 
 ---
 

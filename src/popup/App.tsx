@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react'
+import { StorageKey } from '@/constants/storage'
+import { get, set } from '@/lib/storage'
 
 export default function App() {
   const [enabled, setEnabled] = useState(false)
 
   useEffect(() => {
-    chrome.storage.local.get('showContentPopup', (result: { showContentPopup?: boolean }) => {
-      setEnabled(result.showContentPopup ?? false)
+    get<boolean>(StorageKey.SHOW_CONTENT_POPUP).then((value) => {
+      setEnabled(value ?? false)
     })
   }, [])
 
   const toggle = () => {
     const newValue = !enabled
     setEnabled(newValue)
-    chrome.storage.local.set({ showContentPopup: newValue })
+    set(StorageKey.SHOW_CONTENT_POPUP, newValue)
   }
 
   return (

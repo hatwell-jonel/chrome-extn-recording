@@ -1,5 +1,7 @@
 import Logo from '@/assets/crx.svg'
 import { useEffect, useState } from 'react'
+import { StorageKey } from '@/constants/storage'
+import { get, onChanged } from '@/lib/storage'
 import '../../styles/tailwind.css'
 
 function App() {
@@ -8,18 +10,15 @@ function App() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    chrome.storage.local.get('showContentPopup', (result: { showContentPopup?: boolean }) => {
-      setEnabled(result.showContentPopup ?? false)
+    get<boolean>(StorageKey.SHOW_CONTENT_POPUP).then((value) => {
+      setEnabled(value ?? false)
       setLoaded(true)
     })
 
-    const handler = (changes: { [key: string]: chrome.storage.StorageChange }) => {
-      if (changes.showContentPopup) {
-        setEnabled(changes.showContentPopup.newValue as boolean ?? false)
-      }
-    }
-    chrome.storage.onChanged.addListener(handler)
-    return () => chrome.storage.onChanged.removeListener(handler)
+    const unsub = onChanged<boolean>(StorageKey.SHOW_CONTENT_POPUP, (value) => {
+      setEnabled(value ?? false)
+    })
+    return () => unsub()
   }, [])
 
   if (!loaded || !enabled) return null
